@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Správa vozidiel - Prehľad</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">SV</div>
+        <span>Správa vozidiel</span>
+      </div>
+
+      <nav aria-label="Hlavná navigácia">
+        <ul class="nav-list">
+          <li><a class="nav-link active" href="index.html">Prehľad</a></li>
+          <li><a class="nav-link" href="detail.html">Moje vozidlá</a></li>
+          <li><a class="nav-link" href="#">Servisná história</a></li>
+          <li><a class="nav-link" href="#">Tankovania</a></li>
+          <li><a class="nav-link" href="#">Dokumenty</a></li>
+        </ul>
+
+        <div class="mobile-nav">
+          <a class="active" href="index.html">Prehľad</a>
+          <a href="detail.html">Vozidlá</a>
+          <a href="#">Servis</a>
+          <a href="#">Tankovania</a>
+          <a href="#">Dokumenty</a>
+        </div>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a href="#">Administrácia</a>
+        <a href="#">Odhlásiť sa</a>
+      </div>
+    </aside>
+
+    <div class="app-body">
+      <header class="topbar">
+        <div class="topbar-title">Správa vozidiel</div>
+        <div class="user">
+          <div class="user-avatar" aria-hidden="true"></div>
+          <span>Používateľ</span>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="page-heading">
+          <div>
+            <h1>Prehľad</h1>
+            <p class="subtitle">Súhrn vozidiel, nákladov a blížiacich sa termínov</p>
+          </div>
+          <button class="btn btn-primary" type="button">+ Pridať vozidlo</button>
+        </section>
+
+        <section class="panel overview-panel" aria-label="Prehľad aplikácie">
+          <div class="summary-grid">
+            <article class="placeholder-card">
+              <div class="placeholder-line short"></div>
+              <div class="placeholder-line"></div>
+            </article>
+            <article class="placeholder-card">
+              <div class="placeholder-line short"></div>
+              <div class="placeholder-line"></div>
+            </article>
+            <article class="placeholder-card">
+              <div class="placeholder-line short"></div>
+              <div class="placeholder-line"></div>
+            </article>
+          </div>
+
+          <div class="placeholder-content" aria-label="Priestor pre hlavný obsah">
+            <div class="placeholder-line"></div>
+            <div class="placeholder-line"></div>
+            <div class="placeholder-line"></div>
+            <div class="placeholder-line"></div>
+            <div class="placeholder-line"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
