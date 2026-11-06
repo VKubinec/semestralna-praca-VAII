@@ -580,3 +580,192 @@ th {
     white-space: normal;
   }
 }
+
+/* AI-assisted mobile overflow fix for the vehicle detail (teacher feedback). */
+@media (max-width: 900px) {
+  .app-body,
+  .main,
+  .detail-grid,
+  .detail-grid > *,
+  .history-panel,
+  .vehicle-card,
+  .vehicle-card > *,
+  .table-wrap {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .history-panel .table-wrap {
+    overflow-x: visible;
+  }
+
+  .history-panel table {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .history-panel thead {
+    display: none;
+  }
+
+  .history-panel tbody,
+  .history-panel tr,
+  .history-panel td {
+    display: block;
+  }
+
+  .history-panel tr {
+    padding: 9px 0;
+    border-bottom: 1px solid #d6d6d6;
+  }
+
+  .history-panel tr:last-child {
+    border-bottom: 0;
+  }
+
+  .history-panel td {
+    display: grid;
+    grid-template-columns: minmax(76px, 35%) minmax(0, 1fr);
+    gap: 8px;
+    padding: 5px 0;
+    border: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .history-panel td::before {
+    color: #737373;
+    font-size: .88rem;
+    font-weight: 700;
+  }
+
+  .history-panel td:nth-child(1)::before { content: "Ukon"; }
+  .history-panel td:nth-child(2)::before { content: "Datum"; }
+  .history-panel td:nth-child(3)::before { content: "Stav km"; }
+  .history-panel td:nth-child(4)::before { content: "Cena"; }
+
+  .deadline-item,
+  .document-item,
+  .document-item span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* AI-assisted styles for the database CRUD screens, VAII assignment 6. */
+.summary-number,
+.summary-title {
+  display: block;
+  margin-top: 12px;
+  font-size: 1.5rem;
+  overflow-wrap: anywhere;
+}
+
+.overview-vehicle-list {
+  display: grid;
+  gap: 10px;
+}
+
+.overview-vehicle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+}
+
+.vehicle-list-panel,
+.form-panel {
+  padding: 24px;
+}
+
+.row-actions,
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.row-actions form,
+.detail-heading .btn-row form {
+  margin: 0;
+}
+
+.btn-small {
+  min-height: 34px;
+  padding: 6px 10px;
+  font-size: .85rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.form-field {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.form-field label {
+  font-weight: 700;
+}
+
+.form-field input,
+.form-field select {
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 9px 11px;
+  border: 1px solid #a5a5a5;
+  border-radius: 7px;
+  font: inherit;
+  background: #fff;
+}
+
+.form-actions {
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.form-error {
+  padding: 12px 14px;
+  border: 1px solid #c66;
+  border-radius: 6px;
+  color: #922;
+  background: #fff3f3;
+}
+
+.demo-note {
+  margin: 8px 0 18px;
+  color: #777;
+  font-size: .9rem;
+}
+
+@media (max-width: 900px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .overview-vehicle { align-items: flex-start; flex-direction: column; }
+  .vehicle-list-panel, .form-panel { padding: 16px; }
+  .vehicle-list-panel .table-wrap { overflow-x: visible; }
+  .records-table { min-width: 0; width: 100%; }
+  .records-table thead { display: none; }
+  .records-table tbody, .records-table tr, .records-table td { display: block; }
+  .records-table tr { padding: 12px 0; border-bottom: 1px solid #ddd; }
+  .records-table tr:last-child { border-bottom: 0; }
+  .records-table td {
+    display: grid;
+    grid-template-columns: minmax(76px, 30%) minmax(0, 1fr);
+    gap: 8px;
+    padding: 7px 0;
+    border: 0;
+    overflow-wrap: anywhere;
+  }
+  .records-table td::before { content: attr(data-label); font-weight: 700; color: #737373; }
+  .row-actions { justify-content: flex-start; }
+  .stat-card strong { overflow-wrap: anywhere; }
+}

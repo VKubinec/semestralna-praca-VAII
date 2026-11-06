@@ -2,15 +2,18 @@
 /** @var string $contentHTML */
 /** @var \Framework\Support\LinkGenerator $link */
 
-// AI-assisted layout extracted from html/index.html and html/detail.html.
-$isDetail = ($_GET['a'] ?? 'index') === 'detail';
+// AI-assisted update of the shared layout: ChatGPT, VAII assignment 6.
+$controller = strtolower((string) ($_GET['c'] ?? 'home'));
+$action = strtolower((string) ($_GET['a'] ?? 'index'));
+$isVehiclePage = $controller === 'vozidlo' || ($controller === 'home' && $action === 'detail');
+$pageTitle = $action === 'detail' ? 'Detail vozidla' : ($isVehiclePage ? 'Moje vozidla' : 'Prehlad');
 ?>
 <!DOCTYPE html>
 <html lang="sk">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spr&aacute;va vozidiel - <?= $isDetail ? 'Detail vozidla' : 'Preh&#318;ad' ?></title>
+  <title>Spr&aacute;va vozidiel - <?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></title>
   <link rel="stylesheet" href="<?= $link->asset('css/style.css') ?>">
 </head>
 <body>
@@ -23,16 +26,16 @@ $isDetail = ($_GET['a'] ?? 'index') === 'detail';
 
       <nav aria-label="Hlavn&aacute; navig&aacute;cia">
         <ul class="nav-list">
-          <li><a class="nav-link<?= $isDetail ? '' : ' active' ?>" href="<?= $link->url('home.index') ?>">Preh&#318;ad</a></li>
-          <li><a class="nav-link<?= $isDetail ? ' active' : '' ?>" href="<?= $link->url('home.detail') ?>">Moje vozidl&aacute;</a></li>
+          <li><a class="nav-link<?= $isVehiclePage ? '' : ' active' ?>" href="<?= $link->url('home.index') ?>">Preh&#318;ad</a></li>
+          <li><a class="nav-link<?= $isVehiclePage ? ' active' : '' ?>" href="<?= $link->url('vozidlo.index') ?>">Moje vozidl&aacute;</a></li>
           <li><a class="nav-link" href="#">Servisn&aacute; hist&oacute;ria</a></li>
           <li><a class="nav-link" href="#">Tankovania</a></li>
           <li><a class="nav-link" href="#">Dokumenty</a></li>
         </ul>
 
         <div class="mobile-nav">
-          <a class="<?= $isDetail ? '' : 'active' ?>" href="<?= $link->url('home.index') ?>">Preh&#318;ad</a>
-          <a class="<?= $isDetail ? 'active' : '' ?>" href="<?= $link->url('home.detail') ?>">Vozidl&aacute;</a>
+          <a class="<?= $isVehiclePage ? '' : 'active' ?>" href="<?= $link->url('home.index') ?>">Preh&#318;ad</a>
+          <a class="<?= $isVehiclePage ? 'active' : '' ?>" href="<?= $link->url('vozidlo.index') ?>">Vozidl&aacute;</a>
           <a href="#">Servis</a>
           <a href="#">Tankovania</a>
           <a href="#">Dokumenty</a>
