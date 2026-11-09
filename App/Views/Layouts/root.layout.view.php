@@ -6,7 +6,10 @@
 $controller = strtolower((string) ($_GET['c'] ?? 'home'));
 $action = strtolower((string) ($_GET['a'] ?? 'index'));
 $isVehiclePage = $controller === 'vozidlo' || ($controller === 'home' && $action === 'detail');
-$pageTitle = $action === 'detail' ? 'Detail vozidla' : ($isVehiclePage ? 'Moje vozidla' : 'Prehlad');
+$isServicePage = $controller === 'servis';
+$isFuelPage = $controller === 'tankovanie';
+$isOverviewPage = !$isVehiclePage && !$isServicePage && !$isFuelPage;
+$pageTitle = $isFuelPage ? 'Tankovania' : ($isServicePage ? 'Servisná história' : ($action === 'detail' ? 'Detail vozidla' : ($isVehiclePage ? 'Moje vozidlá' : 'Prehľad')));
 ?>
 <!DOCTYPE html>
 <html lang="sk">
@@ -26,19 +29,19 @@ $pageTitle = $action === 'detail' ? 'Detail vozidla' : ($isVehiclePage ? 'Moje v
 
       <nav aria-label="Hlavn&aacute; navig&aacute;cia">
         <ul class="nav-list">
-          <li><a class="nav-link<?= $isVehiclePage ? '' : ' active' ?>" href="<?= $link->url('home.index') ?>">Preh&#318;ad</a></li>
+          <li><a class="nav-link<?= $isOverviewPage ? ' active' : '' ?>" href="<?= $link->url('home.index') ?>">Preh&#318;ad</a></li>
           <li><a class="nav-link<?= $isVehiclePage ? ' active' : '' ?>" href="<?= $link->url('vozidlo.index') ?>">Moje vozidl&aacute;</a></li>
-          <li><a class="nav-link" href="#">Servisn&aacute; hist&oacute;ria</a></li>
-          <li><a class="nav-link" href="#">Tankovania</a></li>
-          <li><a class="nav-link" href="#">Dokumenty</a></li>
+          <li><a class="nav-link<?= $isServicePage ? ' active' : '' ?>" href="<?= $link->url('servis.index') ?>">Servisn&aacute; hist&oacute;ria</a></li>
+          <li><a class="nav-link<?= $isFuelPage ? ' active' : '' ?>" href="<?= $link->url('tankovanie.index') ?>">Tankovania</a></li>
+          <li><span class="nav-link nav-disabled" aria-disabled="true">Dokumenty</span></li>
         </ul>
 
         <div class="mobile-nav">
-          <a class="<?= $isVehiclePage ? '' : 'active' ?>" href="<?= $link->url('home.index') ?>">Preh&#318;ad</a>
+          <a class="<?= $isOverviewPage ? 'active' : '' ?>" href="<?= $link->url('home.index') ?>">Preh&#318;ad</a>
           <a class="<?= $isVehiclePage ? 'active' : '' ?>" href="<?= $link->url('vozidlo.index') ?>">Vozidl&aacute;</a>
-          <a href="#">Servis</a>
-          <a href="#">Tankovania</a>
-          <a href="#">Dokumenty</a>
+          <a class="<?= $isServicePage ? 'active' : '' ?>" href="<?= $link->url('servis.index') ?>">Servis</a>
+          <a class="<?= $isFuelPage ? 'active' : '' ?>" href="<?= $link->url('tankovanie.index') ?>">Tankovania</a>
+          <span class="nav-disabled" aria-disabled="true">Dokumenty</span>
         </div>
       </nav>
 

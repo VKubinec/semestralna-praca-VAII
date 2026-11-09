@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\ServisnyZaznam;
+use App\Models\Tankovanie;
 use App\Models\Vozidlo;
 use Framework\Core\BaseController;
 use Framework\Http\HttpException;
@@ -13,7 +15,11 @@ class HomeController extends BaseController
 {
     public function index(Request $request): Response
     {
-        return $this->html(['vozidla' => Vozidlo::getAll(orderBy: 'id DESC')]);
+        return $this->html([
+            'vozidla' => Vozidlo::getAll(orderBy: 'id DESC'),
+            'servisneZaznamy' => ServisnyZaznam::getAll(orderBy: 'datum_servisu DESC, id DESC'),
+            'tankovania' => Tankovanie::getAll(orderBy: 'datum_tankovania DESC, id DESC')
+        ]);
     }
 
     public function detail(Request $request): Response
@@ -30,6 +36,14 @@ class HomeController extends BaseController
             throw new HttpException(404);
         }
 
-        return $this->html(['vozidlo' => $vozidlo]);
+        return $this->html([
+            'vozidlo' => $vozidlo,
+            'servisneZaznamy' => ServisnyZaznam::getAll(
+                'vozidlo_id = ?', [$vozidlo->id], 'datum_servisu DESC, id DESC'
+            ),
+            'tankovania' => Tankovanie::getAll(
+                'vozidlo_id = ?', [$vozidlo->id], 'datum_tankovania DESC, id DESC'
+            )
+        ]);
     }
 }

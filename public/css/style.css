@@ -769,3 +769,30 @@ th {
   .row-actions { justify-content: flex-start; }
   .stat-card strong { overflow-wrap: anywhere; }
 }
+
+/* Tankovania a prehľad posledných operácií. */
+.overview-activity {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+.activity-panel { padding: 24px; min-width: 0; }
+.activity-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.activity-heading h2 { margin: 0; font-size: 1.2rem; }
+.activity-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; border-top: 1px solid #e2e2e2; padding: 12px 0; }
+.activity-row > div { min-width: 0; }
+.activity-row > div span { display: block; margin-top: 5px; }
+.activity-row > strong { white-space: nowrap; }
+.activity-row strong, .activity-row span { overflow-wrap: anywhere; }
+.activity-all { display: inline-block; margin-top: 12px; text-decoration: underline; }
+.fuel-history { margin-top: 20px; }
+.nav-disabled { opacity: .45; cursor: default; }
+.mobile-nav .nav-disabled { flex: 0 0 auto; padding: 8px 10px; border: 1px solid #ddd; border-radius: 7px; }
+@media (max-width: 900px) {
+  .overview-activity { grid-template-columns: 1fr; }
+  .activity-panel { padding: 16px; }
+}
+@media (max-width: 480px) {
+  .activity-heading { align-items: flex-start; flex-direction: column; }
+}
